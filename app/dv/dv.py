@@ -3,11 +3,11 @@ from dejavu import Dejavu
 from dejavu.recognize import MicrophoneRecognizer
 from dejavu.recognize import FileRecognizer
 
-class DejavuWrapper
+class DV:
     def __init__(self):
         pass
 
-    def init():
+    def init(self):
         config = {
             "database": {
                 "host": "127.0.0.1",
@@ -19,18 +19,11 @@ class DejavuWrapper
 
         return Dejavu(config)
 
-    def fingerprint():
-        djv = init()
-        djv.fingerprint_directory("sounds/fingerprint", [".mp3"], 3)
-
-    @staticmethod
-    def listen(file):
-        djv = init()
+    def listen(self, file_path):
+        djv = self.init()
         # song = djv.recognize(MicrophoneRecognizer, seconds=10)
-        song = djv.recognize(FileRecognizer, file)
-        print song
+        song = djv.recognize(FileRecognizer, file_path)
+        return song
 
 
-# if __name__ == '__main__':
-#     # fingerprint()
-#     listen()
+

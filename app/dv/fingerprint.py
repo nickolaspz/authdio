@@ -22,7 +22,7 @@ def init():
 
 def fingerprint():
     djv = init()
-    djv.fingerprint_directory(APP_PATH + DS + "sounds" + DS + "fingerprint", [".mp3"], 3)
+    djv.fingerprint_directory(APP_PATH + DS + "sounds" + DS + "fingerprint" + DS + "wav", [".wav"], 3)
 
 
 def convert_mp3_to_wav():
@@ -32,16 +32,17 @@ def convert_mp3_to_wav():
     for filename in os.listdir(mp3_folder):
         if filename.endswith(".mp3"):
             src = os.path.join(mp3_folder, filename)
-            print(os.path.join(mp3_folder, filename))
+
+            filename_no_ext = filename[0:filename.index('.')]
 
             # convert wav to mp3
             sound = AudioSegment.from_mp3(src)
-            sound.export(wav_folder + DS + filename + ".wav", format="wav")
+            sound.export(wav_folder + DS + filename_no_ext + ".wav", format="wav")
             continue
         else:
             continue
 
 
 if __name__ == '__main__':
-    convert_mp3_to_wav()
-    # fingerprint()
+    # convert_mp3_to_wav()
+    fingerprint()

@@ -8,9 +8,11 @@ import uuid, os
 
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 
+
 @app.route('/')
 def index():
     return render_template('index.html')
+
 
 @app.route('/api/listen', methods=['POST'])
 def listen():
@@ -38,9 +40,11 @@ def listen():
 
     return song
 
+
 @app.route('/listen.js')
 def get_script():
     return send_from_directory(APP_PATH + DS + 'dv', 'listen.min.js')
+
 
 if __name__ == '__main__':
     app.run(port=80)

@@ -3,7 +3,6 @@
     a[d] = a[d] || function() {
         (a[d].q=a[d].q || []).push(arguments)
     }, a[d].l = 1 * new Date();
-
     i=u.createElement(t),o=u.getElementsByTagName(t)[0];
     i.async=1;
     i.src=h;

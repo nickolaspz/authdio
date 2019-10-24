@@ -7,22 +7,17 @@ APP_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DS = os.sep
 
 
-def init():
-    config = {
-        "database": {
-            "host": "127.0.0.1",
-            "user": "root",
-            "passwd": "root",
-            "db": "dejavu"
-        }
-    }
-
-    return Dejavu(config)
-
-
 def fingerprint():
-    djv = init()
-    djv.fingerprint_directory(APP_PATH + DS + "sounds" + DS + "fingerprint" + DS + "wav", [".wav"], 3)
+    djv = Dejavu({
+        "database": {
+            "host": "db",
+            "user": os.environ["POSTGRES_USER"],
+            "password": os.environ["POSTGRES_PASSWORD"],
+            "database": os.environ["POSTGRES_DB"]
+        },
+        "database_type": "postgres"
+    })
+    djv.fingerprint_directory(APP_PATH + DS + "sounds" + DS + "fingerprint" + DS + "wav", ".wav", 3)
 
 
 def convert_mp3_to_wav():

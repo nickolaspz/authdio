@@ -1,26 +1,23 @@
 # -*- coding: utf-8 -*-
+import os
 from dejavu import Dejavu
-from dejavu.recognize import MicrophoneRecognizer
-from dejavu.recognize import FileRecognizer
+from dejavu.logic.recognizer.file_recognizer import FileRecognizer
+
 
 class DV:
     def __init__(self):
-        pass
-
-    def init(self):
-        config = {
+        self.config = Dejavu({
             "database": {
-                "host": "127.0.0.1",
-                "user": "root",
-                "passwd": "root",
-                "db": "dejavu"
-            }
-        }
-
-        return Dejavu(config)
+                "host": "db",
+                "user": os.environ["POSTGRES_USER"],
+                "password": os.environ["POSTGRES_PASSWORD"],
+                "database": os.environ["POSTGRES_DB"]
+            },
+            "database_type": "postgres"
+        })
 
     def listen(self, file_path):
-        djv = self.init()
+        djv = self.config
         # song = djv.recognize(MicrophoneRecognizer, seconds=10)
         song = djv.recognize(FileRecognizer, file_path)
         return song

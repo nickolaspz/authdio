@@ -1,10 +1,18 @@
+import os
+import uuid
+
 from flask import Flask
 from flask import render_template
-from flask import send_from_directory
 from flask import request
+from flask import send_from_directory
 from flask_cors import CORS
-from setup import app, APP_PATH, DS, DV
-import uuid, os
+
+APP_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+APP_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'app')
+DS = os.sep
+TEMPLATE_PATH = os.path.join(APP_PATH, 'templates/')
+
+app = Flask('authdio', template_folder=TEMPLATE_PATH, static_folder=APP_PATH + DS + 'static')
 
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 

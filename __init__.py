@@ -1,1 +1,0 @@
-from .setup import APP_PATH

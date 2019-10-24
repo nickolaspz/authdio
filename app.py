@@ -7,6 +7,8 @@ from flask import request
 from flask import send_from_directory
 from flask_cors import CORS
 
+from app.dv.dv import DV
+
 APP_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 APP_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'app')
 DS = os.sep
@@ -55,4 +57,4 @@ def get_script():
 
 
 if __name__ == '__main__':
-    app.run(port=80)
+    app.run(port=8000)

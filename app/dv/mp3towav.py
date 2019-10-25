@@ -8,6 +8,7 @@ DS = os.sep
 def ok():
     print(APP_PATH)
 
+
 # for filename in os.listdir(APP_PATH):
 #     if filename.endswith(".asm") or filename.endswith(".py"):
 #         print(os.path.join(APP_PATH, filename))

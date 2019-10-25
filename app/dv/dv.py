@@ -21,6 +21,3 @@ class DV:
         # song = djv.recognize(MicrophoneRecognizer, seconds=10)
         song = djv.recognize(FileRecognizer, file_path)
         return song
-
-
-

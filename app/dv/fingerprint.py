@@ -17,7 +17,8 @@ def fingerprint():
         },
         "database_type": "postgres"
     })
-    djv.fingerprint_directory(APP_PATH + DS + "sounds" + DS + "fingerprint" + DS + "wav", ".wav", 3)
+    djv.fingerprint_directory(
+        APP_PATH + DS + "sounds" + DS + "fingerprint" + DS + "wav", ".wav", 3)
 
 
 def convert_mp3_to_wav():
@@ -32,7 +33,8 @@ def convert_mp3_to_wav():
 
             # convert wav to mp3
             sound = AudioSegment.from_mp3(src)
-            sound.export(wav_folder + DS + filename_no_ext + ".wav", format="wav")
+            sound.export(wav_folder + DS + filename_no_ext + ".wav",
+                         format="wav")
             continue
         else:
             continue

@@ -29,7 +29,7 @@
             fd.append('audio', recorded);
 
             $.ajax({
-                url: '//local.authdio.com/api/listen',
+                url: '//localhost:8000/api/listen',
                 method: 'post',
                 data: fd,
                 processData: false,
@@ -49,7 +49,7 @@
 
     function render_response(response) {
         l.remove();
-        e.innerHTML = 'Song name: ' + response.song_name + '<br>' + 'Confidence: ' + response.confidence;
+        e.innerHTML = 'Song name: ' + response.song_name + '<br>' + 'Confidence: ' + response.input_confidence;
     }
 
     function render() {

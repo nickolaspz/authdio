@@ -8,6 +8,8 @@ from flask import send_from_directory
 from flask_cors import CORS
 
 from app.dv.dv import DV
+from app.dv.normalize import Normalize
+
 
 APP_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 APP_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'app')
@@ -41,22 +43,27 @@ def listen():
     f.save(file_path)
 
     # Attempt to match recording
-    dejavu = DV()
-    song = dejavu.listen(file_path)
-    print(song)
+    try:
+        dejavu = DV()
+        song = dejavu.listen(file_path)
+        song = Normalize.convert_list_to_string(song)
+        print(song)
+
+        # Cleanup. Delete file
+        os.remove(file_path)
+        return song['results'][0]
+    except:
+        print("Error listening to file recording")
 
     # NOTE: When matching device, check that IPs match ? Should be in same network right ?
 
-    # Cleanup. Delete file
-    # os.remove(file_path)
-
-    return song
+    return ""
 
 
 @app.route('/listen.js')
 def get_script():
-    return send_from_directory(APP_PATH + DS + 'dv', 'listen.min.js')
+    return send_from_directory(APP_PATH + DS + 'dv', 'listen.js')
 
 
 if __name__ == '__main__':
-    app.run(port=8000, host='0.0.0.0')
+    app.run(port=8000, host='0.0.0.0', debug=True)
